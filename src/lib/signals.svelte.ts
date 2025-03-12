@@ -5,7 +5,15 @@ export type GetSet<T> = readonly [get: () => T, set: (value: T) => void];
  *
  * @example
  * ```ts
- * const [count, setCount] = createState(0);
+ * const [items, setItems] = createState<string[]>([]);
+ *
+ * function addItem(item: string) {
+ *     items().push(item)
+ * };
+ *
+ * function clearItems() {
+ *     setItems([]);
+ * }
  * ```
  *
  * @param initial The initial value
@@ -17,7 +25,15 @@ export function createState<T>(): GetSet<T | undefined>;
  *
  * @example
  * ```ts
- * const [count, setCount] = createState(0);
+ * const [items, setItems] = createState<string[]>([]);
+ *
+ * function addItem(item: string) {
+ *     items().push(item)
+ * };
+ *
+ * function clearItems() {
+ *     setItems([]);
+ * }
  * ```
  *
  * @param initial The initial value
@@ -40,9 +56,9 @@ export function createState<T>(initial?: T): GetSet<T | undefined> {
  *
  * @example
  * ```ts
- * const [items, setItems] = createRawState([0]);
+ * const [items, setItems] = createRawState<string[]>([]);
  *
- * function addItem(item) {
+ * function addItem(item: string) {
  *     setItems([...items(), item]);
  * };
  * ```
@@ -57,9 +73,9 @@ export function createRawState<T>(): GetSet<T | undefined>;
  *
  * @example
  * ```ts
- * const [items, setItems] = createRawState([0]);
+ * const [items, setItems] = createRawState<string[]>([]);
  *
- * function addItem(item) {
+ * function addItem(item: string) {
  *     setItems([...items(), item]);
  * };
  * ```

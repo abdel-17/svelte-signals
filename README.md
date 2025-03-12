@@ -37,7 +37,15 @@ Creates deeply reactive state.
 ```ts
 import { createState } from "svelte-signals";
 
-const [count, setCount] = createState(0);
+const [items, setItems] = createState<string[]>([]);
+
+function addItem(item: string) {
+    items().push(item);
+}
+
+function clearItems() {
+    setItems([]);
+}
 ```
 
 ### `createRawState`
@@ -48,7 +56,7 @@ you must set it.
 ```ts
 import { createRawState } from "svelte-signals";
 
-const [items, setItems] = createRawState<string>([]);
+const [items, setItems] = createRawState<string[]>([]);
 
 function addItem(item: string) {
     setItems([...items(), item]);
